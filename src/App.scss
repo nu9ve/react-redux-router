@@ -1,0 +1,104 @@
+$bg-color: #3b1b4c;
+$bg-color-light: #4e2a62;
+// $bg-color: #a353cf;
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 20vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: $bg-color;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.go-write-link {
+  font-size: 12px;
+  color: white;
+  a:visited{
+    color: #d2d2d2;
+  }
+}
+
+.topic-list {
+  list-style: none;
+  text-align: center; 
+  list-style-position:inside;
+  padding: 0;
+}
+
+.essay-list {
+  list-style: none;
+  text-align: center; 
+  list-style-position:inside;
+  padding: 0;
+}
+
+.go-essay-link {
+  font-size: 16px;
+  color: white;
+  a:visited{
+    color: #d2d2d2;
+  }
+}
+
+.menu-bar-wrapper{
+  background: $bg-color-light;
+}
+
+.menu-bar{
+  width: 25%;
+  margin: auto;
+  font-size: 16px;
+  background: $bg-color-light;
+  color: white;
+  padding: 8px 0;
+  a:visited{
+    color: white;
+  }
+
+  ul {
+    display: flex;
+    align-items: stretch; /* Default */
+    justify-content: space-between;
+    width: 100%;
+    background: $bg-color-light;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    display: block;
+    flex: 0 1 auto; /* Default */
+    list-style-type: none;
+    background: $bg-color-light;
+  }
+}
