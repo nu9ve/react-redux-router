@@ -1,6 +1,6 @@
 
 import { ChangeEvent, FormEvent, useState, useEffect } from 'react';
-import { useLocation, useHistory, Link } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { rootStore } from '../../store';
 import config from '../../config.json';
@@ -17,7 +17,7 @@ export type User = {
 
 export function Auth() {
   const location = useLocation();
-  const history = useHistory();
+  const history = useNavigate();
   const dispatch = useDispatch();
   const userStore = useSelector((state: rootStore) => state.user)
   const [isBusy, setIsBusy] = useState(false);
@@ -151,7 +151,7 @@ export function Auth() {
      </div>
 }
 // import { useState, useReducer, MouseEvent, ChangeEvent } from 'react';
-// import {useParams, useHistory} from "react-router-dom";
+// import {useParams, useNavigate} from "react-router-dom";
 // import config from '../config.json';
 
 // const formReducer = (state, event: ChangeEvent<HTMLInputElement>) => {

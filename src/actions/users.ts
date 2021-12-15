@@ -1,12 +1,12 @@
 import { Dispatch } from 'redux';
-import axios from 'axios';
-
+import axios, { AxiosResponse, AxiosError } from "axios";
 import config from '../config.json';
 import { 
   UserDispatchTypes, 
   USER_LOGIN, USER_ERROR, USER_SUCCESS, USER_LOADING, USER_CLEAN,
   SignUpDataI 
 } from '../types/users';
+// import { returnErrors } from "../errors/actions";
 
 
 // ths functions / actions are used at componets through dispatch
@@ -86,18 +86,56 @@ export const signInUser = (username: string, password: string) => async (dispatc
       type: USER_LOGIN
     });
 
-  } catch(e) {
-    // console.log('bad passwrod???', e);
-    // console.log(e.response.status);
+  } catch(e: unknown) {
     let message = 'Ocrruio un error interno, por favor intenta mas tarde';
-    if (e.response.status === 403) {
-      message = 'Correo o contraseña incorrecta'
+    // console.log(e);
+    if (axios.isAxiosError(e)) {
+      const errResp = e.response;
+      // Handle your error type safe here
+      if (errResp?.status === 403) {
+        message = 'Correo o contraseña incorrecta'
+      }
+  
+      dispatch({
+        type: USER_ERROR,
+        message,
+      });
+    } else {
+      // Handle the unknown
     }
-    dispatch({
-      type: USER_ERROR,
-      message,
-    });
+    
   }
+  
+  
+  // catch(err: AxiosError){
+  //   if(err.response) dispatch(returnErrors(err.response.data, err.response.status, REGISTER_FAILED));
+            
+  //   else if(err.request) dispatch(returnErrors(err.request.data, err.request.status, REGISTER_FAILED));
+         
+  //   else dispatch(returnErrors("An internal error occurred", 500, REGISTER_FAILED));
+  // }
+
+  // dispatch({
+  //   type: USER_ERROR,
+  //   message,
+  // });
+  
+  
+  // catch(e as) {
+  //   // console.log('bad passwrod???', e);
+  //   // console.log(e.response.status);
+  //   let message = 'Ocrruio un error interno, por favor intenta mas tarde';
+  //   console.log(e);
+  //   if (e.response.status === 403) {
+  //     message = 'Correo o contraseña incorrecta'
+  //   }
+
+    // dispatch({
+    //   type: USER_ERROR,
+    //   message,
+    // });
+
+  // }
 }
 
 export const signOutUser = () => (dispatch: Dispatch<UserDispatchTypes>) => {

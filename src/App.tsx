@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector, Provider } from 'react-redux';
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
   Link
 } from "react-router-dom";
@@ -39,22 +39,18 @@ function App() {
     <Router>
       <div>
         <Navbar />
-        <Switch>
-          <Route exact path="/about" component={About} />
-          <Route exact path={["/user", "/login" , "/register"]}>
-            { 
-              (isLoggedIn && 
+        <Routes>
+          <Route path="/about" element={<About/>} />
+          <Route path="/user|/login|/register" element={((isLoggedIn && 
               <About />) ||
-              <Auth />
-            }
-          </Route>
-          <Route exact path="/logout" component={Logout} />
-          <Route exact path="/create/:topicId" component={Editor} />
-          <Route exact path="/read/:essayId" component={Reader} />
-          <Route exact path="/topics" component={Topics} />
-          <Route exact path="/" component={Home} />
-          <Route component={NotFound} />
-        </Switch>
+              <Auth />)}/>
+          <Route path="/logout" element={<Logout/>} />
+          <Route path="/create/:topicId" element={<Editor/>} />
+          <Route path="/read/:essayId" element={<Reader/>} />
+          <Route path="/topics" element={<Topics/>} />
+          <Route path="/" element={<Home/>} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </div>
     </Router>
   

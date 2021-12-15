@@ -1,11 +1,11 @@
 
 import { useState, useEffect, MouseEvent, ChangeEvent } from 'react';
-import {useParams, useHistory} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import config from '../config.json';
 import { Essay } from '../types/content';
 
 export function Reader() {
-  const history = useHistory();
+  const history = useNavigate();
   let { essayId }: any = useParams();
   const [error, setError] = useState(null);
   const [title, setTitle] = useState('');

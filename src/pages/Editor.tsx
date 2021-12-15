@@ -1,10 +1,10 @@
 
 import { useState, useEffect, MouseEvent, ChangeEvent } from 'react';
-import {useParams, useHistory} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import config from '../config.json';
 
 export function Editor() {
-  const history = useHistory();
+  const navigate = useNavigate();
   let { topicId }: any = useParams();
   const [error, setError] = useState(null);
   const [titleInput, setTitleInput] = useState('');
@@ -77,7 +77,7 @@ export function Editor() {
             console.log(response);
             setTitleInput('')
             setBodyInput('')
-            history.push('/')
+            navigate('/')
         });
 
     
